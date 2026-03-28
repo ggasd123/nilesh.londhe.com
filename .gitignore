@@ -1,0 +1,3 @@
+# Site build output
+public/
+.hugo_build.lock
