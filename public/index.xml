@@ -1,38 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Nilesh Londhe</title>
-    <link>https://nilesh.londhe.com/</link>
-    <description>Recent content on Nilesh Londhe</description>
-    <image>
-      <title>Nilesh Londhe</title>
-      <url>https://nilesh.londhe.com/avatar.jpg</url>
-      <link>https://nilesh.londhe.com/avatar.jpg</link>
-    </image>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://nilesh.londhe.com/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://nilesh.londhe.com/about/</link>
-      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://nilesh.londhe.com/about/</guid>
-      <description>&lt;h1 id=&#34;about-nilesh-londhe&#34;&gt;About Nilesh Londhe&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Nilesh Londhe</title><link>https://nilesh.londhe.com/</link><description>Recent content on Nilesh Londhe</description><image><title>Nilesh Londhe</title><url>https://nilesh.londhe.com/avatar.jpg</url><link>https://nilesh.londhe.com/avatar.jpg</link></image><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nilesh.londhe.com/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://nilesh.londhe.com/about/</link><pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate><guid>https://nilesh.londhe.com/about/</guid><description>&lt;h1 id="about-nilesh-londhe"&gt;About Nilesh Londhe&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;m LV Nilesh, founder of Cloud Genius. I&amp;rsquo;m passionate about AI, productivity, and building tools that help people work more effectively.&lt;/p&gt;
-&lt;h2 id=&#34;what-i-do&#34;&gt;What I do&lt;/h2&gt;
+&lt;h2 id="what-i-do"&gt;What I do&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cloud Genius:&lt;/strong&gt; Building productivity tools&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;AI &amp;amp; LLMs:&lt;/strong&gt; Exploring local models and AI automation&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Investing:&lt;/strong&gt; Bitcoin, tech stocks, and nuclear energy&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Building:&lt;/strong&gt; Always working on new projects&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;connect-with-me&#34;&gt;Connect with me&lt;/h2&gt;
+&lt;h2 id="connect-with-me"&gt;Connect with me&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lvnilesh&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/LVNilesh&#34;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;mailto:nilesh@cloudgeni.us&#34;&gt;Email&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;li&gt;&lt;a href="https://github.com/lvnilesh"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/LVNilesh"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="mailto:nilesh@cloudgeni.us"&gt;Email&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
