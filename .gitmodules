@@ -1,0 +1,6 @@
+[submodule "themes/hugo-blox"]
+	path = themes/hugo-blox
+	url = https://github.com/HugoBlox/hugo-blox-builder.git
+[submodule "themes/PaperMod"]
+	path = themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git

@@ -1,0 +1,47 @@
+baseURL = "https://nilesh.londhe.com/"
+languageCode = "en-us"
+title = "Nilesh Londhe"
+theme = "PaperMod"
+
+[params]
+  description = "Personal blog by LV Nilesh"
+  authors = ["Nilesh Londhe"]
+  images = ["avatar.jpg"]
+
+[[params.homeProfileParams.buttons]]
+  name = "Blog"
+  url = "/posts"
+
+[[params.homeProfileParams.buttons]]
+  name = "About"
+  url = "/about"
+
+[[params.homeProfileParams.buttons]]
+  name = "GitHub"
+  url = "https://github.com/lvnilesh"
+
+[[params.homeProfileParams.buttons]]
+  name = "Twitter"
+  url = "https://twitter.com/LVNilesh"
+
+[params.homeProfileParams]
+  title = "Nilesh Londhe"
+  subtitle = "Cloud Genius | AI Enthusiast | Builder"
+  imageUrl = "/avatar.jpg"
+  imageWidth = 120
+  imageHeight = 120
+  imageCropFocus = "center"
+  imageMarkdownLink = "/about"
+
+[params.analytics]
+  enable = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
