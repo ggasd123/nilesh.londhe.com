@@ -1,0 +1,218 @@
+<!-- LV Nilesh AI Chatbot Widget -->
+<script>
+(function() {
+  const API_URL = 'https://embeddings.home.cloudgeni.us/chat';
+  
+  // Create widget container
+  const widget = document.createElement('div');
+  widget.id = 'lvnilesh-chatbot';
+  widget.innerHTML = `
+    <button id="lvc-toggle" aria-label="Chat with LV Nilesh AI">
+      💬
+    </button>
+    <div id="lvc-window" role="dialog" aria-label="Chat">
+      <div class="lvc-header">
+        <span>🤖 LV Nilesh Bot</span>
+        <button id="lvc-close" aria-label="Close chat">×</button>
+      </div>
+      <div id="lvc-messages"></div>
+      <form id="lvc-form">
+        <input type="text" id="lvc-input" placeholder="Ask something..." autocomplete="off" required>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  `;
+  
+  // Styles
+  const style = document.createElement('style');
+  style.textContent = `
+    #lvnilesh-chatbot { --primary: #667eea; --primary-dark: #764ba2; }
+    #lvc-toggle {
+      position: fixed; bottom: 20px; right: 20px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; border: none;
+      font-size: 24px; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+      z-index: 9999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #lvc-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 16px rgba(102,126,234,0.5); }
+    #lvc-window {
+      display: none;
+      position: fixed; bottom: 90px; right: 20px;
+      width: 360px; max-height: 500px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      z-index: 9999;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #lvc-window.open { display: flex; }
+    .lvc-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 12px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 600;
+    }
+    #lvc-close {
+      background: none; border: none;
+      color: white; font-size: 24px;
+      cursor: pointer; opacity: 0.8;
+    }
+    #lvc-close:hover { opacity: 1; }
+    #lvc-messages {
+      flex: 1; overflow-y: auto;
+      padding: 16px;
+      background: #f7f7f8;
+    }
+    .lvc-message {
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 80%;
+      word-wrap: break-word;
+      line-height: 1.4;
+    }
+    .lvc-message.user {
+      background: var(--primary);
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+    .lvc-message.bot {
+      background: white;
+      color: #333;
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .lvc-message.system {
+      background: #fff3cd;
+      color: #856404;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    #lvc-form {
+      display: flex;
+      padding: 12px;
+      background: white;
+      border-top: 1px solid #eee;
+      gap: 8px;
+    }
+    #lvc-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 20px;
+      outline: none;
+      font-size: 14px;
+    }
+    #lvc-input:focus { border-color: var(--primary); }
+    #lvc-form button {
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; border: none;
+      border-radius: 20px;
+      cursor: pointer; font-weight: 600;
+    }
+    #lvc-form button:hover { opacity: 0.9; }
+    #lvc-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+    @media (max-width: 480px) {
+      #lvc-window { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.appendChild(widget);
+  
+  // DOM elements
+  const toggle = document.getElementById('lvc-toggle');
+  const windowEl = document.getElementById('lvc-window');
+  const closeBtn = document.getElementById('lvc-close');
+  const messages = document.getElementById('lvc-messages');
+  const form = document.getElementById('lvc-form');
+  const input = document.getElementById('lvc-input');
+  const submitBtn = form.querySelector('button');
+  
+  // Add message
+  function addMessage(text, type = 'bot') {
+    const div = document.createElement('div');
+    div.className = `lvc-message ${type}`;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  
+  // Show typing indicator
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'lvc-message bot';
+    div.id = 'lvc-typing';
+    div.textContent = 'Thinking...';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  
+  // Hide typing indicator
+  function hideTyping() {
+    const typing = document.getElementById('lvc-typing');
+    if (typing) typing.remove();
+  }
+  
+  // Send message
+  async function sendMessage(query) {
+    addMessage(query, 'user');
+    showTyping();
+    submitBtn.disabled = true;
+    
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      });
+      
+      hideTyping();
+      
+      if (!response.ok) throw new Error('API error');
+      const data = await response.json();
+      addMessage(data.response, 'bot');
+    } catch (error) {
+      hideTyping();
+      addMessage('Sorry, I encountered an error. Please try again.', 'bot');
+      console.error('Chatbot error:', error);
+    }
+    
+    submitBtn.disabled = false;
+    input.focus();
+  }
+  
+  // Event handlers
+  toggle.addEventListener('click', () => {
+    windowEl.classList.toggle('open');
+    if (windowEl.classList.contains('open')) {
+      input.focus();
+    }
+  });
+  
+  closeBtn.addEventListener('click', () => {
+    windowEl.classList.remove('open');
+  });
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = input.value.trim();
+    if (query) {
+      input.value = '';
+      sendMessage(query);
+    }
+  });
+  
+  // Welcome message
+  setTimeout(() => addMessage('Hi! I\'m an AI trained on LV Nilesh\'s Twitter history. Ask me anything!', 'bot'), 500);
+})();
+</script>
